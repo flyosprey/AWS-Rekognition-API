@@ -3,7 +3,7 @@ import uuid
 import boto3
 import logging
 from botocore.exceptions import ClientError
-from .constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DEFAULT_REGION_NAME
+from constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DEFAULT_REGION_NAME
 
 
 def create_presigned_url(event, expiration=5*60):
