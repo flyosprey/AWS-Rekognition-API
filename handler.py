@@ -3,7 +3,7 @@ import uuid
 import boto3
 import logging
 from botocore.exceptions import ClientError
-from .constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DEFAULT_REGION_NAME
+from constants import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, DEFAULT_REGION_NAME, BUCKET_NAME
 
 
 def create_presigned_url(event, expiration=5*60):
@@ -13,7 +13,7 @@ def create_presigned_url(event, expiration=5*60):
 
     try:
         url = s3_client.generate_presigned_url("put_object",
-                                               Params={"Bucket": event["Bucket_name"],
+                                               Params={"Bucket": BUCKET_NAME,
                                                        "Key": event["Bucket_key"]
                                                        },
                                                HttpMethod="PUT",
