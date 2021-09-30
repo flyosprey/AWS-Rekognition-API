@@ -8,13 +8,28 @@ provider:
   name: aws
   runtime: python3.8
   lambdaHashingVersion: '20201221'
+  stage: dev
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action: s3:PutObject
+      Resource: 'arn:aws:s3:::blobs-bucket/*'
 
 resources:
   Resources:
-    S3Assets:
+    Bucket:
       Type: AWS::S3::Bucket
       Properties:
         BucketName: blobs-bucket
+        VersioningConfiguration:
+          Status: Enabled
+        CorsConfiguration:
+          CorsRules:
+            - AllowedHeaders: ['*']
+              AllowedMethods: [GET, PUT, POST]
+              AllowedOrigins: ['*']
+              Id: CORSRuleId1
+              MaxAge: '3600'
     BlobsTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -35,11 +50,10 @@ custom:
   tableName: Blobs
   s3Sync:
     - bucketName: blobs-bucket
-      localDir: UploadData
 
 functions:
-  hello:
-    handler: handler.hello
+  create_blob:
+    handler: handler.create_blob
     events:
       - http:
           path: /blobs
