@@ -26,10 +26,26 @@ def create_presigned_url(bucket_key, expiration=5*60):
     return url
 
 
+def put_item_dynamodb(callback_url):
+    blob_id = str(uuid.uuid4())
+
+    client = boto3.resource("dynamodb", region_name=DEFAULT_REGION_NAME)
+    table = client.Table("Blobs")
+
+    items = {"blob_id": blob_id, "callback_url": callback_url}
+
+    response = table.put_item(Item=items)
+
+    return response
+
+
 def create_blob(event, context):
 
+    callback_url = event["Callback_url"]
     url = create_presigned_url(event["Bucket_key"])
 
-    response = {"statusCode": 200, "body": json.dumps(url)}
+    db_responce = put_item_dynamodb(callback_url)
+
+    response = {"statusCode": 200, "body": json.dumps(db_responce)}
 
     return response
