@@ -20,7 +20,9 @@ resources:
           Statement:
             - Effect: Allow
               Principal: "*"
-              Action: s3:PutObject
+              Action:
+               - s3:PutObject
+               - s3:GetObject
               Resource: ["arn:aws:s3:::blobs-bucket", "arn:aws:s3:::blobs-bucket/*"]
     Bucket:
       Type: AWS::S3::Bucket
@@ -73,11 +75,21 @@ provider:
 
 functions:
   create_blob:
-    handler: handler.create_blob
+    handler: create_blob_handler.create_blob
     events:
       - http:
           path: /blobs
           method: POST
+  process_blob:
+    handler: process_blob_handler.process_blob
+    events:
+      - s3:
+          bucket: blobs-bucket
+          event: s3:ObjectCreated:Put
+          existing: true
+  make_callback:
+    handler: make_callback_handler.process_blob
+    events:
       - http:
           path: /blobs/{blob_id}
           method: GET
