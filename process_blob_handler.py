@@ -3,12 +3,12 @@ import urllib.parse
 import json
 from decimal import Decimal
 from botocore.exceptions import ClientError
-from constants import BUCKET_NAME, DEFAULT_REGION_NAME
+from constants import BUCKET_NAME, TABLE_NAME, REGION_NAME
 
 
 def detect_photo_labels(s3_blob_key):
     try:
-        rekognition_client = boto3.client("rekognition", region_name=DEFAULT_REGION_NAME)
+        rekognition_client = boto3.client("rekognition", region_name=REGION_NAME)
         labels = rekognition_client.detect_labels(
             Image={"S3Object": {"Bucket": BUCKET_NAME, "Name": s3_blob_key}},
             MaxLabels=10
@@ -24,8 +24,8 @@ def detect_photo_labels(s3_blob_key):
 
 
 def put_labels_info(labels, dynamodb_blob_id):
-    dynamodb_client = boto3.resource("dynamodb", region_name=DEFAULT_REGION_NAME)
-    table = dynamodb_client.Table("Blobs")
+    dynamodb_client = boto3.resource("dynamodb", region_name=REGION_NAME)
+    table = dynamodb_client.Table(TABLE_NAME)
     try:
         dynamodb_response = table.update_item(
             Key={

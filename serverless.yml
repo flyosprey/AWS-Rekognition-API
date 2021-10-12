@@ -88,8 +88,8 @@ functions:
           event: s3:ObjectCreated:Put
           existing: true
   make_callback:
-    handler: make_callback_handler.process_blob
+    handler: make_callback_handler.make_callback
     events:
       - http:
-          path: /blobs/{blob_id}
+          path: /blobs/{blob_id+}
           method: GET
