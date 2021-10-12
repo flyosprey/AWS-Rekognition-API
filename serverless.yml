@@ -44,13 +44,9 @@ resources:
         AttributeDefinitions:
           - AttributeName: blob_id
             AttributeType: S
-          - AttributeName: callback_url
-            AttributeType: S
         KeySchema:
           - AttributeName: blob_id
             KeyType: HASH
-          - AttributeName: callback_url
-            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
 
 provider:
@@ -72,6 +68,10 @@ provider:
             - dynamodb:DeleteItem
           Resource:
             - Fn::GetAtt: [ BlobsTable, Arn ]
+        - Effect: Allow
+          Action:
+            - "rekognition:*"
+          Resource: "*"
 
 functions:
   create_blob:
