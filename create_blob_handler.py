@@ -47,7 +47,7 @@ def create_blob(event, context):
     bucket_key = blob_id + ".png"
     sent_items = json.loads(event["body"])
     callback_url = sent_items["callback_url"]
-    if is_url(event["callback_url"]):
+    if is_url(callback_url):
         url = create_presigned_url(bucket_key)
         put_item_dynamodb(callback_url, blob_id)
         response = {
