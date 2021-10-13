@@ -7,27 +7,28 @@ using PUT request finally you will get answer which contain presign_url, your ca
 
 ## Links
 POST link: https://squktjjqwa.execute-api.us-east-1.amazonaws.com/dev/blobs
+
 GET link: https://squktjjqwa.execute-api.us-east-1.amazonaws.com/dev/blobs/{blob_id}
 
 ## Getting Started
 
 ### POST request: Example
-1) For first you should to send a callback_url via POST request using POST link
+For first you should to send a callback_url via POST request using POST link.
 <br>
-![Screenshot](post_example.png)
-![Screenshot](post_response_example.png)
+![Images_for_readme](post_example.png)
+![Images_for_readme](post_response_example.png)
 
 ### PUT request: Example
-2) For second you should to send a photo via PUT request using presign_url got in first step.
+For second you should to send a photo via PUT request using presign_url got in first step.
 <br>
-![Screenshot](put_example.png)
+![Images_for_readme](put_example.png)
 
 ### GET request: Example
-3) For third you should add blob_id got in first step in the end of GET link and send GET request
+For third you should add blob_id got in first step in the end of GET link and send GET request.
 <br>
-![Screenshot](get_example.png)
+![Images_for_readme](get_example.png)
 
 ### Finally response: Example
-Finally you should check response to your callback_url
+Finally you should check response to your callback_url.
 <br>
-![Screenshot](webhook_response_example.png)
+![Images_for_readme](webhook_response_example.png)
