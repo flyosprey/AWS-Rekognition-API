@@ -12,7 +12,7 @@ GET link: https://squktjjqwa.execute-api.us-east-1.amazonaws.com/dev/blobs/{blob
 
 ### Webhook url: Example
 For example you can get callback_url with <a href="https://webhook.site/">webhook.site</a> and copy your unique URL.
-<br>
+<hr>
 <img src="Images/webhook_example.png">
 
 ### POST request: Example
