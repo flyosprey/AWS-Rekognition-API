@@ -51,12 +51,11 @@ def create_blob(event, context):
         url = create_presigned_url(bucket_key)
         put_item_dynamodb(callback_url, blob_id)
         response = {
-            "statusCode": 200,
-            "url": json.dumps(url),
-            "blob_id": json.dumps(blob_id),
-            "callback_url": json.dumps(callback_url)
+            "url": url,
+            "blob_id": blob_id,
+            "callback_url": callback_url
         }
     else:
-        return {"statusCode": 400, "message": "Invalid callback url supplied"}
+        return {"statusCode": 400, "body": json.dumps("Invalid callback url supplied")}
 
-    return response
+    return {"statusCode": 200, "body": json.dumps(response)}
