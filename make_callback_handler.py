@@ -8,7 +8,6 @@ from constants import REGION_NAME, TABLE_NAME, REGION_NAME
 def get_labels_info(blob_id):
     dynamodb_resource = boto3.resource("dynamodb", region_name=REGION_NAME)
     table = dynamodb_resource.Table(TABLE_NAME)
-
     try:
         response = table.get_item(Key={"blob_id": blob_id})
     except ClientError as e:
@@ -30,8 +29,8 @@ def make_callback(event, context):
             "POST",
             callback_url,
             body=labels_info,
-            headers={"Content-Type": "application/json"})
-
+            headers={"Content-Type": "application/json"}
+        )
     if callback_response.status != 200:
         return {"statusCode": callback_response.status, "body": json.dumps("Problem with your callback url")}
     else:
