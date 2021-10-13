@@ -17,7 +17,7 @@ For example you can get callback_url with <a href="https://webhook.site/">webhoo
 
 ### POST request: Example
 1. For first you should to send a callback_url via POST request using POST link.
-<br>
+
 <img src="Images/post_example.png">
 <img src="Images/post_response_example.png">
 
