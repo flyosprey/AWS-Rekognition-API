@@ -46,7 +46,9 @@ def create_blob(event, context):
     blob_id = str(uuid.uuid4())
     sent_items = json.loads(event["body"])
     callback_url = sent_items["callback_url"]
-    if is_url(callback_url):
+    if not is_url(callback_url):
+        return {"statusCode": 400, "body": json.dumps("Invalid callback url supplied")}
+    else:
         url = create_presigned_url(blob_id)
         put_item_dynamodb(callback_url, blob_id)
         response = {
@@ -54,7 +56,4 @@ def create_blob(event, context):
             "blob_id": blob_id,
             "callback_url": callback_url
         }
-    else:
-        return {"statusCode": 400, "body": json.dumps("Invalid callback url supplied")}
-
-    return {"statusCode": 200, "body": json.dumps(response)}
+        return {"statusCode": 200, "body": json.dumps(response)}
