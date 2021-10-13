@@ -44,11 +44,10 @@ def is_url(url):
 
 def create_blob(event, context):
     blob_id = str(uuid.uuid4())
-    bucket_key = blob_id + ".png"
     sent_items = json.loads(event["body"])
     callback_url = sent_items["callback_url"]
     if is_url(callback_url):
-        url = create_presigned_url(bucket_key)
+        url = create_presigned_url(blob_id)
         put_item_dynamodb(callback_url, blob_id)
         response = {
             "url": url,

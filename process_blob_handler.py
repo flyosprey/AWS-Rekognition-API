@@ -44,9 +44,8 @@ def put_labels_info(labels, dynamodb_blob_id):
 
 
 def process_blob(event, context):
-    s3_blob_key = urllib.parse.unquote_plus(event["Records"][0]["s3"]["object"]["key"], encoding="utf-8")
-    dynamodb_blob_id = s3_blob_key.replace(".png", "")
-    labels = detect_photo_labels(s3_blob_key)
-    response = put_labels_info(labels, dynamodb_blob_id)
+    blob_id = urllib.parse.unquote_plus(event["Records"][0]["s3"]["object"]["key"], encoding="utf-8")
+    labels = detect_photo_labels(blob_id)
+    response = put_labels_info(labels, blob_id)
 
     return response
