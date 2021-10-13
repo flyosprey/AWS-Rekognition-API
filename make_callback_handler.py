@@ -26,7 +26,11 @@ def make_callback(event, context):
     else:
         callback_url = dynamodb_response["Item"]["callback_url"]
         labels_info = json.dumps(dynamodb_response["Item"]["labels_photo"], ensure_ascii=False, default=str)
-        callback_response = http.request("POST", callback_url, body=labels_info)
+        callback_response = http.request(
+            "POST",
+            callback_url,
+            body=labels_info,
+            headers={"Content-Type": "application/json"})
 
     if callback_response.status != 200:
         return {"statusCode": callback_response.status, "body": json.dumps("Problem with your callback url")}
