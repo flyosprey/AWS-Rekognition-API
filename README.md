@@ -12,26 +12,21 @@ GET link: https://squktjjqwa.execute-api.us-east-1.amazonaws.com/dev/blobs/{blob
 
 ### Webhook url: Example
 For example you can get callback_url with <a href="https://webhook.site/">webhook.site</a> and copy your unique URL.
-<hr>
 <img src="Images/webhook_example.png">
 
 ### POST request: Example
 1. For first you should to send a callback_url via POST request using POST link.
-
 <img src="Images/post_example.png">
 <img src="Images/post_response_example.png">
 
 ### PUT request: Example
 2. For second you should to send a photo via PUT request using presign_url got in first step.
-<br>
 <img src="Images/put_example.png">
 
 ### GET request: Example
 3. For third you should add blob_id got in first step in the end of GET link and send GET request.
-<br>
 <img src="Images/get_example.png">
 
 ### Finally response: Example
 4. Finally you should check response to your callback_url.
-<br>
 <img src="Images/webhook_response_example.png">
