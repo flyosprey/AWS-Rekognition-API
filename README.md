@@ -15,20 +15,20 @@ GET link: https://squktjjqwa.execute-api.us-east-1.amazonaws.com/dev/blobs/{blob
 ### POST request: Example
 1. For first you should to send a callback_url via POST request using POST link.
 <br>
-![Images_for_readme](post_example.png)
-![Images_for_readme](post_response_example.png)
+![Screenshot](Images_for_readme/post_example.png)
+![Screenshot](Images_for_readme/post_response_example.png)
 
 ### PUT request: Example
 2. For second you should to send a photo via PUT request using presign_url got in first step.
 <br>
-![Images_for_readme](put_example.png)
+![Screenshot](Images_for_readme/put_example.png)
 
 ### GET request: Example
 3. For third you should add blob_id got in first step in the end of GET link and send GET request.
 <br>
-![Images_for_readme](get_example.png)
+![Screenshot](Images_for_readme/get_example.png)
 
 ### Finally response: Example
 4. Finally you should check response to your callback_url.
 <br>
-![Images_for_readme](webhook_response_example.png)
+![Screenshot](Images_for_readme/webhook_response_example.png)
