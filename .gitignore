@@ -147,4 +147,5 @@ dmypy.json
 test.py
 constants.py
 __init__.py
+.gitignore~
 >>>>>>> 7a1dcc1fa6cee6f64afa1ac63da0ce1d72650b81
