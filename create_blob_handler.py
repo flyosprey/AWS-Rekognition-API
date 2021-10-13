@@ -50,7 +50,7 @@ def create_blob(event, context):
         url = create_presigned_url(blob_id)
         put_item_dynamodb(callback_url, blob_id)
         response = {
-            "url": url,
+            "presign_url": url,
             "blob_id": blob_id,
             "callback_url": callback_url
         }
