@@ -52,9 +52,9 @@ def create_blob(event, context):
     else:
         url = create_presigned_url(blob_id)
         put_item_dynamodb(callback_url, blob_id)
-        response = {
+        info = {
             "presign_url": url,
             "blob_id": blob_id
         }
-        success_201 = {"message": response}
+        response = {"message": info}
         return {"statusCode": 201, "body": json.dumps(success_201)}
