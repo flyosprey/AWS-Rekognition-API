@@ -57,4 +57,4 @@ def create_blob(event, context):
             "blob_id": blob_id,
         }
         response = {"message": info}
-        return {"statusCode": 201, "body": json.dumps(success_201)}
+        return {"statusCode": 201, "body": json.dumps(response)}

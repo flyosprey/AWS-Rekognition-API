@@ -1,5 +1,4 @@
 import boto3
-import urllib3
 import json
 from botocore.exceptions import ClientError
 from constants import REGION_NAME, TABLE_NAME, REGION_NAME

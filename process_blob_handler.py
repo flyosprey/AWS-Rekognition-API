@@ -39,7 +39,8 @@ def put_labels_info(labels, dynamodb_blob_id):
         print(e.response["Error"]["Message"])
     else:
         return dynamodb_response
-        
+
+
 def get_callback_url(blob_id):
     dynamodb_client = boto3.resource("dynamodb", region_name=REGION_NAME)
     table = dynamodb_client.Table(TABLE_NAME)
@@ -50,7 +51,8 @@ def get_callback_url(blob_id):
         print(e.response["Error"]["Message"])
     else:
         return callback_url
-        
+
+
 def send_callback(callback_url, labels):
     labels = json.loads(json.dumps(labels["Labels"], default=float))
     http = urllib3.PoolManager()
@@ -67,7 +69,7 @@ def process_blob(event, context):
     blob_id = urllib.parse.unquote_plus(event["Records"][0]["s3"]["object"]["key"], encoding="utf-8")
     callback_url = get_callback_url(blob_id)
     labels = detect_photo_labels(blob_id)
-    send_callback_response = send_callback(callback_url, labels)
+    send_callback(callback_url, labels)
     put_labels_info_response = put_labels_info(labels, blob_id)
 
     return put_labels_info_response
