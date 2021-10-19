@@ -54,7 +54,7 @@ def create_blob(event, context):
         put_item_dynamodb(callback_url, blob_id)
         info = {
             "presign_url": url,
-            "blob_id": blob_id
+            "blob_id": blob_id,
         }
         response = {"message": info}
         return {"statusCode": 201, "body": json.dumps(success_201)}
